@@ -18,20 +18,21 @@ const Navbar = () => {
     })
 
     return (
-        <nav className='bg-zinc-700 my-3 flex justify-between py-2 px-10 rounded-lg'>
-            <ul className='flex gap-x-2 items-center'>
+        <nav className='bg-zinc-700 mb-3 flex justify-between py-2 px-10'>
+            <ul className='flex gap-x-8 items-center'>
                 <Link to='/'><img className='w-24 rounded-full' src="https://png.pngtree.com/png-clipart/20220604/original/pngtree-restaurant-logo-png-image_7932128.png" alt="" /></Link>
-                <Link to='/nosotros'>Nosotros</Link>
+                <Link to='/images'>Imagenes</Link>
+                <Link to='/nosotros'>Quienes Somos</Link>
                 <Link to='/contacto'>Contactenos</Link>
             </ul>
-            <ul className='flex gap-x-2 items-center'>
+            <ul className='flex gap-x-8 items-center'>
                 {isAuthenticated ? (
                     <>
                         {
                             !user.admin &&
                                 <Link to='/add-reserves' className='mr-5'>Hacer una reserva</Link>
                         }
-                        <div className='flex flex-col mr-2'>
+                        <div className='flex flex-col mr-4'>
                             <div className='relative'>
                                 <img ref={imgRef} className='w-20' onClick={() => setOpenDrop(!openDrop)} src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="" />
 

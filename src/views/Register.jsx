@@ -53,11 +53,11 @@ const Register = () => {
                     <input placeholder='Contraseña' type="password" name='password'{...register('password', { required: true })}
                         className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
                     {errors.password && <p className='text-red-500'>La contraseña es requerida</p>}
-                    <button type='submit' className='bg-gray-900 my-2 py-2 px-4 rounded-md'>
+                    <button type='submit' className='bg-orange-700 px-4 py-1 rounded-md my-2 '>
                         Registrarse
                     </button>
                 </form>
-                <p className='flex gap-x-2 justify-between'>Ya tienes una cuenta?<Link to="/login" className='text-sky-500'>Inicia sesion</Link></p>
+                <p className='flex gap-x-2 justify-between mt-4'>Ya tienes una cuenta?<Link to="/login" className='text-sky-500'>Inicia sesion</Link></p>
             </div>
         </div>
 

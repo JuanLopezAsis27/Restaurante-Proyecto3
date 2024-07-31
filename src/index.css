@@ -6,3 +6,8 @@ body{
   background: #202020 ;
   color: white;
 }
+
+.triangulo{
+  position: absolute;
+}
+

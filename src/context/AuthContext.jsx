@@ -19,16 +19,13 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [errors, setErrors] = useState([])
     const [loading, setLoading] = useState(true)
-    const [isAdmin, setIsAdmin] = useState(null)
 
     const signUp = async (user) => {
         try {
             const res = await registrarse(user)
             
             setUser(res.data)
-           
             setIsAuthenticated(true)
-            
               
         } catch (error) {
             if (Array.isArray(error.response.data)) {
@@ -44,6 +41,8 @@ export const AuthProvider = ({ children }) => {
             
             setUser(res.data)
             setIsAuthenticated(true)
+            
+
         } catch (error) {
             
             if (Array.isArray(error.response.data)) {
@@ -51,6 +50,13 @@ export const AuthProvider = ({ children }) => {
             }
             setErrors([error.response.data.message])
         }
+    }
+
+    const logout = () =>{
+        Cookies.remove("token");
+        setIsAuthenticated(false)
+        setUser(null)
+        setIsAdmin(false)
     }
 
     useEffect(() => {
@@ -61,6 +67,7 @@ export const AuthProvider = ({ children }) => {
                 setIsAuthenticated(false)
                 setLoading(false)
                 setUser(null);
+                
                 return;
             }
 
@@ -94,7 +101,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ signUp, signIn, user, isAuthenticated, errors, loading }}>
+        <AuthContext.Provider value={{ signUp, signIn,logout, user, isAuthenticated, errors, loading }}>
             {children}
         </AuthContext.Provider>
 

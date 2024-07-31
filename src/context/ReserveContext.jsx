@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { createReserve, getReserves, getOneReserve, deleteReserve, updateReserve } from "../utils/reserves";
+import { createReserve, getUserReserves, getOneReserve, deleteReserve, updateReserve } from "../utils/reserves";
 
 export const ReserveContext = createContext()
 
@@ -15,12 +15,12 @@ export function ReserveProvider({ children }) {
 
     const [reserves, setReserves] = useState([])
 
-    const readReserves = async ()=>{
+    const readUserReserves = async () => {
         try {
-            const res = await getReserves(); 
-            console.log(res);
+            const res = await getUserReserves();
+
             setReserves(res.data);
-            
+
         } catch (error) {
             console.log(error);
         }
@@ -28,15 +28,43 @@ export function ReserveProvider({ children }) {
 
     const crearReserva = async (data) => {
         const telefono = parseInt(data.telefono)
-        const cantidadPersonas = parseInt(data.telefono)
-        const reserve = {...data,telefono,cantidadPersonas}
+        const cantidadPersonas = parseInt(data.cantidadPersonas)
+        const reserve = { ...data, telefono, cantidadPersonas }
         const res = await createReserve(reserve)
 
         console.log(res);
     }
 
+    const eliminarReserva = async (id) => {
+        try {
+            const res = await deleteReserve(id);
+            if (res.status == 204) setReserves(reserves.filter(reserve => reserve.rid != id))
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const readOneReserve = async (id) => {
+        try {
+            const res = await getOneReserve(id)
+            return res
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const actualizarReserva = async (id, reserve) => {
+        try {
+            const res = await updateReserve(id, reserve)
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
-        <ReserveContext.Provider value={{ reserves, crearReserva , readReserves}}>
+        <ReserveContext.Provider value={{ reserves, crearReserva, readUserReserves, eliminarReserva, readOneReserve, actualizarReserva }}>
             {children}
         </ReserveContext.Provider>
 

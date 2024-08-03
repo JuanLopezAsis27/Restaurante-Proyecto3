@@ -17,17 +17,20 @@ import { ReserveProvider } from "./context/ReserveContext";
 import Footer from "./components/Footer";
 import Images from "./views/Images";
 import Contact from "./views/Contact";
+import ErrorScreen from "./views/ErrorScreen";
+import Headroom from "react-headroom"
 
 function App() {
-
 
   return (
     <>
       <AuthProvider>
         <ReserveProvider>
           <BrowserRouter>
+          <Headroom>
           <Navbar />
-            <main className="container px-6 min-h-screen">
+          </Headroom>
+            <main className="container px-6">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
@@ -45,6 +48,7 @@ function App() {
                   <Route path="/manage-users" element={<ManageUsers />} />
                   <Route path="/manage-reserves" element={<ManageReserves/>} />
                 </Route>
+                <Route path="*" element={<ErrorScreen/>} />
               </Routes>
             </main>
             <Footer/>

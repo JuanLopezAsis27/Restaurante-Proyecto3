@@ -1,29 +1,30 @@
 import { useState, createContext, useContext, useEffect } from "react";
 import { ingresar, registrarse, verifyToken } from "../utils/auth";
 import Cookies from "js-cookie";
-import Swal from 'sweetalert2'
-
+import DefaultImage from "../assets/avatarDefault.png";
 
 export const AuthContext = createContext()
 
 export const useAuth = () => {
     const context = useContext(AuthContext)
     if (!context) {
-        throw new Error("useAuth must be used within an AuthProvider")
+        throw new Error("useAuth debe usarse dentro de un AuthProvider")
     }
     return context
 }
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const [errors, setErrors] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [user, setUser] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [errors, setErrors] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [avatarURL, setAvatarURL] = useState(DefaultImage);
 
     const signUp = async (user) => {
         try {
+            console.log(user);
+
             const res = await registrarse(user)
-            
             setUser(res.data)
             setIsAuthenticated(true)
               
@@ -101,7 +102,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ signUp, signIn,logout, user, isAuthenticated, errors, loading }}>
+        <AuthContext.Provider value={{ signUp, signIn,logout, user, isAuthenticated, errors, loading, avatarURL,setAvatarURL }}>
             {children}
         </AuthContext.Provider>
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect , useRef} from 'react'
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
@@ -9,6 +9,7 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const { signUp, isAuthenticated, errors: registerErrors } = useAuth()
     const navigate = useNavigate()
+
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -38,9 +39,10 @@ const Register = () => {
         signUp(values)
     })
 
+
     return (
 
-        <div className='flex h-[calc(100vh-100px)] items-center justify-center'>
+        <div className='flex items-center justify-center my-32'>
             <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md " >
                 <h1 className='text-2xl font-bold'>Registrarse</h1>
                 <form onSubmit={onSubmit}>
@@ -50,9 +52,10 @@ const Register = () => {
                     <input placeholder='Email' type="email" name='email' {...register('email', { required: true })}
                         className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
                     {errors.email && <p className='text-red-500'>El email es requerido</p>}
-                    <input placeholder='Contraseña' type="password" name='password'{...register('password', { required: true })}
+                    <input placeholder='Contraseña' type="password" name='password' {...register('password', { required: true })}
                         className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
                     {errors.password && <p className='text-red-500'>La contraseña es requerida</p>}
+
                     <button type='submit' className='bg-orange-700 px-4 py-1 rounded-md my-2 '>
                         Registrarse
                     </button>

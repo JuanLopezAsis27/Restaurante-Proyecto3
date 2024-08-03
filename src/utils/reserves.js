@@ -2,6 +2,8 @@ import axios from "./axios";
 
 export const getUserReserves = ()=> axios.get('/reserves/getUserReserves');
 
+export const getReserves = ()=> axios.get('/reserves/getReserves');
+
 export const getOneReserve = (id)=> axios.get(`/reserves/getOneReserve/${id}`);
 
 export const createReserve = (reserve)=> axios.post('/reserves/createReserve',reserve);

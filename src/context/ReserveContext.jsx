@@ -1,12 +1,12 @@
 import { createContext, useContext, useState } from "react";
-import { createReserve, getUserReserves, getOneReserve, deleteReserve, updateReserve } from "../utils/reserves";
+import { createReserve, getUserReserves, getOneReserve, getReserves, deleteReserve, updateReserve } from "../utils/reserves";
 
 export const ReserveContext = createContext()
 
 export const useReserves = () => {
     const context = useContext(ReserveContext)
     if (!context) {
-        throw new Error("useReserves must be used within an ReserveProvider")
+        throw new Error("useReserves debe usarse dentro de un ReserveProvider")
     }
     return context
 }
@@ -26,10 +26,23 @@ export function ReserveProvider({ children }) {
         }
     }
 
+    
+    const readReserves = async () => {
+        try {
+            const res = await getReserves();
+
+            setReserves(res.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const crearReserva = async (data) => {
-        const telefono = parseInt(data.telefono)
-        const cantidadPersonas = parseInt(data.cantidadPersonas)
-        const reserve = { ...data, telefono, cantidadPersonas }
+        console.log(data.dia);
+        const telefono = parseInt(data.telefono);
+        const cantidadPersonas = parseInt(data.cantidadPersonas);
+        const reserve = { ...data, telefono, cantidadPersonas };
         const res = await createReserve(reserve)
 
         console.log(res);
@@ -54,6 +67,7 @@ export function ReserveProvider({ children }) {
         }
     }
 
+
     const actualizarReserva = async (id, reserve) => {
         try {
             const res = await updateReserve(id, reserve)
@@ -64,7 +78,7 @@ export function ReserveProvider({ children }) {
     }
 
     return (
-        <ReserveContext.Provider value={{ reserves, crearReserva, readUserReserves, eliminarReserva, readOneReserve, actualizarReserva }}>
+        <ReserveContext.Provider value={{ reserves, crearReserva, readUserReserves, eliminarReserva, readOneReserve, readReserves, actualizarReserva }}>
             {children}
         </ReserveContext.Provider>
 

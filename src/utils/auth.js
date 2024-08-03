@@ -8,4 +8,6 @@ export const ingresar = (user)=>axios.post(`/auth/login`,user)
 
 export const verifyToken = ()=>axios.get('/auth/verify')
 
+export const error404 = ()=>axios.get('/error/error404')
+
 

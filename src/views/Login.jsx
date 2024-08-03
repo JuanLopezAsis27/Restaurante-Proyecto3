@@ -41,7 +41,7 @@ const Login = () => {
   })
 
   return (
-    <div className='flex h-[calc(100vh-100px)] items-center justify-center'>
+    <div className='flex items-center justify-center my-36'>
       <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md min-w-md'>
         <h1 className='text-2xl font-bold'>Ingresar</h1>
         <form onSubmit={onSubmit}>

@@ -1,4 +1,4 @@
-import React, { useEffect , useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
@@ -15,8 +15,9 @@ const Register = () => {
         if (isAuthenticated) {
             Swal.fire({
                 title: "Usuario creado exitosamente!",
-                text: "Cool",
-                icon: "success"
+                icon: "success",
+                background: '#393939',
+                color: '#fafafa'
             });
             navigate('/')
         }
@@ -29,6 +30,8 @@ const Register = () => {
                 icon: "error",
                 title: `${registerErrors.map((error, i) => error)}`,
                 text: "Intente con otro",
+                background: '#393939',
+                color: '#fafafa'
             });
             reset()
 
@@ -46,18 +49,18 @@ const Register = () => {
             <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md " >
                 <h1 className='text-2xl font-bold'>Registrarse</h1>
                 <form onSubmit={onSubmit}>
-                    <input placeholder='Nombre de usuario' type="text" name='username' {...register('username', { required: true })}
+                    <input placeholder='Nombre de usuario' type="text" name='username' {...register('username', { required: 'El usuario es requerido' })}
                         className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2 ' />
-                    {errors.username && <p className='text-red-500'>El nombre de usuario es requerido</p>}
-                    <input placeholder='Email' type="email" name='email' {...register('email', { required: true })}
+                    <p className='text-red-500'>{errors.username?.message}</p>
+                    <input placeholder='Email' type="email" name='email' {...register('email', { required: 'El email es requerido' })}
                         className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
-                    {errors.email && <p className='text-red-500'>El email es requerido</p>}
-                    <input placeholder='Contraseña' type="password" name='password' {...register('password', { required: true })}
+                    <p className='text-red-500'>{errors.email?.message}</p>
+                    <input placeholder='Contraseña' type="password" name='password' {...register('password', { required: 'La contraseña es requerida' })}
                         className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
-                    {errors.password && <p className='text-red-500'>La contraseña es requerida</p>}
+                    <p className='text-red-500'>{errors.password?.message}</p>
 
-                    <button type='submit' className='bg-orange-700 px-4 py-1 rounded-md my-2 '>
-                        Registrarse
+                    <button type='submit' className='bg-orange-400 text-black px-4 py-1 rounded-md my-2 '>
+                        <b>Registrarse</b>
                     </button>
                 </form>
                 <p className='flex gap-x-2 justify-between mt-4'>Ya tienes una cuenta?<Link to="/login" className='text-sky-500'>Inicia sesion</Link></p>

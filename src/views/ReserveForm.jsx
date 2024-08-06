@@ -1,28 +1,33 @@
 import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import { useReserves } from '../context/ReserveContext';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import Swal from 'sweetalert2'
 
 const ReserveForm = () => {
   const horas = ['13:00', '14:00', '15:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
   const cantidadPersonas = [4, 5, 6, 7, 8];
   const { register, handleSubmit, setValue, reset } = useForm();
-  const { crearReserva, readOneReserve, actualizarReserva } = useReserves()
+  const { crearReserva, readOneReserve, actualizarReserva, reserves } = useReserves()
   const navigate = useNavigate()
+  const location = useLocation();
   const params = useParams()
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path=="/add-reserves") {
+      reset()
+    }
+  },[location])
 
   useEffect(() => {
     async function loadReserve() {
       if (params.id) {
-        console.log(params);
         const reserve = await readOneReserve(params.id)
-        console.log(reserve);
         setValue('dia', reserve.data.dia);
         setValue('hora', reserve.data.hora);
         setValue('telefono', reserve.data.telefono);
         setValue('cantidadPersonas', reserve.data.cantidadPersonas);
-
       }
     }
     loadReserve()
@@ -32,23 +37,75 @@ const ReserveForm = () => {
 
   const onSubmit = handleSubmit((data) => {
     Swal.fire({
-      title: "Estas seguro que quieres confirmar esta reserva?",
+      title: "¿Seguro que quieres confirmar esta reserva?",
       showDenyButton: true,
-      confirmButtonColor: "#63cb4c",
+      confirmButtonColor: "#197600",
+      denyButtonColor: "#a40000",
       confirmButtonText: "Confirmar Reserva",
-      denyButtonText: `Cancelar`
-    }).then((result) => {
+      denyButtonText: `Cancelar`,
+      background: '#393939',
+      color: '#fafafa'
+    }).then(async (result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        Swal.fire("Reserva realizada!", "", "success");
-        console.log(data);
-        if (params.id) {
-          actualizarReserva(params.id, data)
+        const reserva = reserves.find((reserve) => reserve.dia == data.dia && reserve.hora == data.hora && reserve.cantidadPersonas == data.cantidadPersonas)
+
+        if (reserva) {
+          if (params.id) {
+            const res = await readOneReserve(params.id)
+            console.log(data);
+
+            if (res.data.dia == data.dia && res.data.hora == data.hora && res.data.cantidadPersonas == data.cantidadPersonas) {
+              Swal.fire({
+                icon: "warning",
+                title: `No se han notado cambios en su reserva`,
+                text: "Desea regresar al menu de reservas?",
+                showCancelButton: true,
+                cancelButtonColor: "#a40000",
+                cancelButtonText: "Cancelar",
+                confirmButtonText: "Regresar",
+                background: '#393939',
+                color: '#fafafa'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate('/reserves')
+                }
+              })
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: `Esta mesa ya esta reservada`,
+                background: '#393939',
+                color: '#fafafa'
+              });
+            }
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: `Esta mesa ya esta reservada`,
+              background: '#393939',
+              color: '#fafafa'
+            });
+            reset()
+          }
         } else {
-          crearReserva(data)
+          Swal.fire({title:"Reserva realizada!", icon:"success", background: '#393939',
+            color: '#fafafa'});
+          if (params.id) {
+            actualizarReserva(params.id, data)
+          } else {
+            crearReserva(data)
+          }
+
+          console.log(data);
+
+          navigate('/reserves')
         }
-        navigate('/reserves')
-      } 
+
+
+
+
+      }
     })
 
 
@@ -70,8 +127,8 @@ const ReserveForm = () => {
               return <option key={`cp${cant}`} value={cant}>{cant}</option>
             })}
           </select>
-          <button className='bg-orange-700 px-4 py-1 rounded-md mt-3'>
-            Realizar Reserva
+          <button className='bg-orange-400 px-4 py-1 rounded-md mt-3 text-black'>
+            <b>{params.id ? 'Modificar reserva' : 'Realizar Reserva'}</b>
           </button>
         </form>
       </div>

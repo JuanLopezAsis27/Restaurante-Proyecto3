@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 const ErrorScreen = () => {
     
   return (
-    <div>ErrorScreen</div>
+    <div className='mt-36'>ErrorScreen</div>
   )
 }
 

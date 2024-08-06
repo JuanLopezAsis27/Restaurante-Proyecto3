@@ -11,6 +11,3 @@ export const createReserve = (reserve)=> axios.post('/reserves/createReserve',re
 export const updateReserve = (id, reserve)=> axios.put(`/reserves/updateReserve/${id}`,reserve);
 
 export const deleteReserve = (id)=> axios.delete(`/reserves/deleteReserve/${id}`);
-
-
-

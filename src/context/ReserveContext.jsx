@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { createReserve, getUserReserves, getOneReserve, getReserves, deleteReserve, updateReserve } from "../utils/reserves";
 
+
 export const ReserveContext = createContext()
 
 export const useReserves = () => {
@@ -51,6 +52,8 @@ export function ReserveProvider({ children }) {
     const eliminarReserva = async (id) => {
         try {
             const res = await deleteReserve(id);
+            console.log(res);
+            
             if (res.status == 204) setReserves(reserves.filter(reserve => reserve.rid != id))
 
         } catch (error) {
@@ -78,7 +81,7 @@ export function ReserveProvider({ children }) {
     }
 
     return (
-        <ReserveContext.Provider value={{ reserves, crearReserva, readUserReserves, eliminarReserva, readOneReserve, readReserves, actualizarReserva }}>
+        <ReserveContext.Provider value={{ reserves, crearReserva, readUserReserves, eliminarReserva, readOneReserve, readReserves, actualizarReserva,  }}>
             {children}
         </ReserveContext.Provider>
 

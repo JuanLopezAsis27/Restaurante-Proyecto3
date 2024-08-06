@@ -18,40 +18,38 @@ import Footer from "./components/Footer";
 import Images from "./views/Images";
 import Contact from "./views/Contact";
 import ErrorScreen from "./views/ErrorScreen";
-import Headroom from "react-headroom"
 
 function App() {
-
   return (
     <>
       <AuthProvider>
         <ReserveProvider>
           <BrowserRouter>
-          <Headroom>
-          <Navbar />
-          </Headroom>
-            <main className="container px-6">
+            <Navbar />
+            <main className="container min-w-full">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/images" element={<Images/>} />
+                <Route path="/images" element={<Images />} />
                 <Route path="/nosotros" element={<AboutUs />} />
-                <Route path="/contacto" element={<Contact/>} />
+                <Route path="/contacto" element={<Contact />} />
                 <Route element={<ProtectedRoute />}>
                   <Route path="/reserves" element={<Reserves />} />
                   <Route path="/add-reserves" element={<ReserveForm />} />
                   <Route path="/reserves/:id" element={<ReserveForm />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/profile/:id" element={<Profile />} />
+
                 </Route>
-                <Route element={<ProtectedRouteAdmin/>}>
+                <Route element={<ProtectedRouteAdmin />}>
                   <Route path="/manage-users" element={<ManageUsers />} />
-                  <Route path="/manage-reserves" element={<ManageReserves/>} />
+                  <Route path="/manage-reserves" element={<ManageReserves />} />
                 </Route>
-                <Route path="*" element={<ErrorScreen/>} />
+                <Route path="*" element={<ErrorScreen />} />
               </Routes>
             </main>
-            <Footer/>
+            <Footer />
           </BrowserRouter>
         </ReserveProvider>
       </AuthProvider>

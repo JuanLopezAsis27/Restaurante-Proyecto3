@@ -146,7 +146,7 @@ export const AuthProvider = ({ children }) => {
         async function checkLogin() {
 
             const cookies = Cookies.get()
-
+            
             if (!cookies.token) {
                 setIsAuthenticated(false)
                 setLoading(false)

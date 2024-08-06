@@ -2,7 +2,7 @@ import React from 'react'
 
 const Images = () => {
   return (
-    <div>Images</div>
+    <div className='my-64 mx-10 '>Images</div>
   )
 }
 

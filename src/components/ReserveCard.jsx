@@ -50,15 +50,15 @@ const ReserveCard = ({ reserve }) => {
   }
 
   return (
-    <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md'>
-      <header className='flex justify-between'>
-        <div>
+    <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md '>
+      <header className='flex justify-between flex-col sm:flex-row'>
+        <div className='sm:m-0 mb-5'>
           {nombreUsu}
           <h1 className='text-2xl font-bold'>{reserve.dia}</h1>
           <p className='text-slate-300'>Hora: {reserve.hora}</p>
           <p className='text-slate-300'>Comensales: {reserve.cantidadPersonas}</p>
         </div>
-        <div className='flex flex-col gap-y-4 item-center'>
+        <div className='flex sm:flex-col gap-y-4 item-center gap-x-3'>
           <button className='bg-orange-700 text-center rounded-md p-2' onClick={deleteReserve}>Cancelar reserva</button>
           <Link className='bg-yellow-600 rounded-md text-center p-2' to={`/reserves/${reserve.rid}`}>Editar</Link>
         </div>

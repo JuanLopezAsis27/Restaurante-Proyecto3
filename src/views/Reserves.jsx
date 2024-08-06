@@ -18,7 +18,7 @@ const Reserves = () => {
   )
 
   return(
-   <div className='grid grid-cols-3 gap-20 mb-56 mt-32 px-16'>
+   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 sm:gap-20 mb-56 mt-32 px-16'>
     {reserves.map((reserve) => (
           <ReserveCard reserve={reserve} key={reserve.rid}/>
     ))}

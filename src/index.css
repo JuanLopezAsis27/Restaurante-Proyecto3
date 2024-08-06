@@ -100,11 +100,7 @@ nav.abajo .dropdown a{
 
 .noHome-nav .avatar-nav{
   width: 3.8rem;
-  
-}
-.noHome-nav .avatar-nav{
   margin-right: 1.5rem;
-  
 }
 
 .noHome-nav .dropdown{
@@ -211,6 +207,14 @@ nav.abajo .dropdown a{
     width: 3.8rem;
   }
 
+  nav.abajo .avatar-nav{
+    margin-right: 0.89rem;
+  }
+
+  .noHome-nav .avatar-nav{
+    margin-right: 0.89rem;
+  }
+
   .btn-nav{
     padding: 0.3rem;
     font-size: 0.8rem;
@@ -221,4 +225,28 @@ nav.abajo .dropdown a{
     display: flex;
     justify-items: end; 
   }
+
+  .dropdown{
+    top: 4.7rem;
+    left: -6.5rem;
+    transition: 0.2s;
+  }
+
+  nav.abajo .dropdown{
+    top: 4.7rem;
+    left: -6.5rem;
+  }
+
+  .noHome-nav .dropdown{
+    top: 4.7rem;
+    left: -6.5rem;
+  }
+  
+  .triangulo{
+    position: absolute;
+    right: 0.39rem;
+    transition: 0.2s;
+  }
+  
+ 
 }

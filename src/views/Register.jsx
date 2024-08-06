@@ -55,7 +55,9 @@ const Register = () => {
                     <input placeholder='Email' type="email" name='email' {...register('email', { required: 'El email es requerido' })}
                         className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
                     <p className='text-red-500'>{errors.email?.message}</p>
-                    <input placeholder='Contraseña' type="password" name='password' {...register('password', { required: 'La contraseña es requerida' })}
+                    <input placeholder='Contraseña' type="password" name='password' {...register('password', {
+                        required: 'La contraseña es requerida', min: { value: 3,message: 'La contraseña debe tener como minimo 6 caracteres' }
+                    })}
                         className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
                     <p className='text-red-500'>{errors.password?.message}</p>
 

@@ -118,13 +118,17 @@ const ReserveForm = () => {
     <div className='flex items-center my-36 justify-center'>
       <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md'>
         <form onSubmit={onSubmit}>
+          <label>Fecha</label>
           <input type="date" placeholder='Dia' min={`${new Date().toISOString().slice(0, 10)}`} max="2024-09-01" {...register('dia', { required: true })} className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
+          <label>Hora</label>
           <select name='hora' {...register('hora', { required: true })} className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2'>
             {horas.map((hora) => {
               return <option key={hora} value={hora}>{hora}</option>
             })}
           </select>
-          <input type="number" placeholder='Telefono' {...register('telefono', { required: true })} className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
+          <label>Telefono</label>
+          <input type="number" {...register('telefono', { required: true })} className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
+          <label>Comensales</label>
           <select name='cantidadPersonas' {...register('cantidadPersonas', { required: true })} className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2'>
             {cantidadPersonas.map((cant) => {
               return <option key={`cp${cant}`} value={cant}>{cant}</option>

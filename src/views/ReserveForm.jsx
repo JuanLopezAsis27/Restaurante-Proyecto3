@@ -22,6 +22,8 @@ const ReserveForm = () => {
     }
   },[location])
 
+  
+
   useEffect(() => {
     async function loadReserve() {
       if (params.id) {
@@ -106,8 +108,6 @@ const ReserveForm = () => {
           }
 
         }
-
-
       }
     })
 

@@ -125,7 +125,6 @@ export const AuthProvider = ({ children }) => {
                 Cookies.remove("token");
                 setIsAuthenticated(false)
                 setUser(null)
-                setIsAdmin(false)
             }
         });
 

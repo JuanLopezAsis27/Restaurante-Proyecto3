@@ -7,7 +7,7 @@ const Reserves = () => {
   const { readUserReserves, reserves } = useReserves()
   useEffect(() => {
     readUserReserves()
-  }, [])
+  }, [reserves])
 
   if (reserves.length == 0) return(
     <div className='flex justify-center'>

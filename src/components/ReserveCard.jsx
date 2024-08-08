@@ -10,10 +10,10 @@ const ReserveCard = ({ reserve }) => {
   const { eliminarReserva } = useReserves()
   const { user } = useAuth()
   let nombreUsu;
+
   if (user.admin) {
     nombreUsu = <h1 className='text-2xl font-bold'>{reserve.user.username}</h1>
   }
-
 
   const deleteReserve = () => {
     Swal.mixin({

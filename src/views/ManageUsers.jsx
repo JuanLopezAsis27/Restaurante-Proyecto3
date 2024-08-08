@@ -8,7 +8,7 @@ const ManageUsers = () => {
 
   useEffect(() => {
     readUsers()
-  }, [])
+  }, [users])
 
   if (users.length == 0) return <h1>No hay usuarios registrados</h1>
   return (

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -9,27 +10,24 @@ const Footer = () => {
                     <div className="mx-auto w-full max-w-screen-xl">
                         <div className="grid grid-cols-2 md:gap-28 lg:gap-56 px-4 py-6 lg:py-8 md:grid-cols-4">
                             <div>
-                                <h2 className="mb-6 text-sm font-semibold text-orange-700 uppercase dark:text-white">Company</h2>
+                                <h2 className="mb-6 text-sm font-semibold text-orange-700 uppercase dark:text-white">Restaurante</h2>
                                 <ul className="text-gray-200 dark:text-gray-400 font-medium">
                                     <li className="mb-4">
-                                        <a href="#" className=" hover:underline">About</a>
+                                        <a href="#" className=" hover:underline">Sobre Nosotros</a>
                                     </li>
                                     <li className="mb-4">
-                                        <a href="#" className="hover:underline">Careers</a>
+                                        <a href="#" className="hover:underline">Contacto</a>
                                     </li>
                                     <li className="mb-4">
-                                        <a href="#" className="hover:underline">Brand Center</a>
-                                    </li>
-                                    <li className="mb-4">
-                                        <a href="#" className="hover:underline">Blog</a>
+                                        <a href="#" className="hover:underline">Galeria de Imagenes</a>
                                     </li>
                                 </ul>
                             </div>
                             <div>
-                                <h2 className="mb-6 text-sm font-semibold text-orange-700 uppercase dark:text-white">Help center</h2>
+                                <h2 className="mb-6 text-sm font-semibold text-orange-700 uppercase dark:text-white">Redes Sociales</h2>
                                 <ul className="text-gray-200 dark:text-gray-400 font-medium">
                                     <li className="mb-4">
-                                        <a href="#" className="hover:underline">Discord Server</a>
+                                        <a href="#" className="hover:underline">Discord</a>
                                     </li>
                                     <li className="mb-4">
                                         <a href="#" className="hover:underline">Twitter</a>
@@ -37,27 +35,24 @@ const Footer = () => {
                                     <li className="mb-4">
                                         <a href="#" className="hover:underline">Facebook</a>
                                     </li>
-                                    <li className="mb-4">
-                                        <a href="#" className="hover:underline">Contact Us</a>
-                                    </li>
                                 </ul>
                             </div>
                             <div>
                                 <h2 className="mb-6 text-sm font-semibold text-orange-700 uppercase dark:text-white">Legal</h2>
                                 <ul className="text-gray-200 dark:text-gray-400 font-medium">
                                     <li className="mb-4">
-                                        <a href="#" className="hover:underline">Privacy Policy</a>
+                                        <a href="#" className="hover:underline">Politica de privacidad</a>
                                     </li>
                                     <li className="mb-4">
-                                        <a href="#" className="hover:underline">Licensing</a>
+                                        <a href="#" className="hover:underline">Licencias</a>
                                     </li>
                                     <li className="mb-4">
-                                        <a href="#" className="hover:underline">Terms &amp; Conditions</a>
+                                        <a href="#" className="hover:underline">Terminos &amp; Condiciones</a>
                                     </li>
                                 </ul>
                             </div>
                             <div>
-                                <h2 className="mb-6 text-sm font-semibold text-orange-700 uppercase dark:text-white">Download</h2>
+                                <h2 className="mb-6 text-sm font-semibold text-orange-700 uppercase dark:text-white">Descarga</h2>
                                 <ul className="text-gray-200 dark:text-gray-400 font-medium">
                                     <li className="mb-4">
                                         <a href="#" className="hover:underline">iOS</a>
@@ -76,7 +71,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="md:px-16 lg:px-28 py-6 text-center bg-stone-950 dark:bg-gray-700 md:flex md:items-center md:justify-between ">
-                        <span className="text-sm text-gray-100 dark:text-gray-300 sm:text-center">© 2023. All Rights Reserved.
+                        <span className="text-sm text-gray-100 dark:text-gray-300 sm:text-center">© 2023. Todos los derechos reservados.
                         </span>
                         <div className="flex mt-4  justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
                             <a href="#" className="text-gray-100 hover:text-orange-700 dark:hover:text-white">

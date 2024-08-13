@@ -1,12 +1,11 @@
 import React from 'react'
 import { useAuth } from '../context/AuthContext'
 import Swal from 'sweetalert2'
-import {useNavigate} from 'react-router-dom'
 
 const UserListCard = ({ user }) => {
 
   const { suspendUser, deleteUser, enableUser } = useAuth()
-  const navigate = useNavigate()
+  
 
   const suspenderUsuario = () => {
     Swal.mixin({
@@ -40,7 +39,7 @@ const UserListCard = ({ user }) => {
           background: '#393939',
           color: '#fafafa'
         });
-        navigate('/')
+        
       } 
     });
   }

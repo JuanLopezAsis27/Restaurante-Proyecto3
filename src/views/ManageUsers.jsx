@@ -4,11 +4,14 @@ import UserListCard from '../components/UserListCard'
 
 
 const ManageUsers = () => {
-  const { readUsers, users } = useAuth()
+  const { readUsers, users ,reloadedUsers, setReloadedUsers  } = useAuth()
 
   useEffect(() => {
     readUsers()
-  }, [users])
+    
+    return()=> setReloadedUsers(false)
+
+  }, [reloadedUsers])
 
   if (users.length == 0) return <h1>No hay usuarios registrados</h1>
   return (

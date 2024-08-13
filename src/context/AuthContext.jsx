@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
     const [avatarURL, setAvatarURL] = useState(DefaultImage);
     const [isHome, setIsHome] = useState(null)
     const [users, setUsers] = useState([]);
+    const [reloadedUsers,setReloadedUsers] = useState(false);
 
     const signUp = async (user) => {
         try {
@@ -36,6 +37,8 @@ export const AuthProvider = ({ children }) => {
                 return setErrors(error.response.data)
             }
             setErrors([error.response.data.message])
+            console.log(error.response.data);
+            
         }
     }
 
@@ -59,8 +62,9 @@ export const AuthProvider = ({ children }) => {
     const suspendUser = async (id) => {
         try {
             const res = await suspenderUsuario(id)
+            setReloadedUsers(true)
             console.log(res);
-            if (res.status == 204) setUsers(users.filter())
+            
         } catch (error) {
             console.log(error);
         }
@@ -69,8 +73,8 @@ export const AuthProvider = ({ children }) => {
     const enableUser = async (id) => {
         try {
             const res = await activarUsuario(id)
+            setReloadedUsers(true)
             console.log(res);
-            if (res.status == 204) setUsers(users.filter())
 
         } catch (error) {
             console.log(error);
@@ -187,7 +191,9 @@ export const AuthProvider = ({ children }) => {
     return (
         <AuthContext.Provider value={{
             signUp, signIn, logout, user, isAuthenticated, errors, loading, avatarURL,
-            setAvatarURL, isHome, setIsHome, readUsers, users, suspendUser, deleteUser, enableUser, updateUser
+            setAvatarURL, isHome, setIsHome, readUsers, users, suspendUser, deleteUser, enableUser, updateUser,
+            setReloadedUsers,reloadedUsers
+            
         }}>
             {children}
         </AuthContext.Provider>

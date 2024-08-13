@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { createReserve, getUserReserves, getOneReserve, getReserves, deleteReserve, updateReserve } from "../utils/reserves";
 
 
@@ -15,6 +15,9 @@ export const useReserves = () => {
 export function ReserveProvider({ children }) {
 
     const [reserves, setReserves] = useState([])
+    const [reloadedReserves,setReloadedReserves] = useState(false)
+    const [reserveErrors, setReserveErrors] = useState([]);
+
 
     const readUserReserves = async () => {
         try {
@@ -40,13 +43,20 @@ export function ReserveProvider({ children }) {
     }
 
     const crearReserva = async (data) => {
+       try {
         console.log(data.dia);
         const telefono = parseInt(data.telefono);
         const cantidadPersonas = parseInt(data.cantidadPersonas);
         const reserve = { ...data, telefono, cantidadPersonas };
         const res = await createReserve(reserve)
+        setReloadedReserves(true)
 
-        console.log(res);
+       } catch (error) {
+        if (Array.isArray(error.response.data)) {
+            return setReserveErrors(error.response.data)
+        }
+        setReserveErrors([error.response.data.message])
+       }
     }
 
     const eliminarReserva = async (id) => {
@@ -74,14 +84,24 @@ export function ReserveProvider({ children }) {
     const actualizarReserva = async (id, reserve) => {
         try {
             const res = await updateReserve(id, reserve)
-
+            setReloadedReserves(true)
         } catch (error) {
-            console.log(error);
+            if (Array.isArray(error.response.data)) {
+                return setReserveErrors(error.response.data)
+            }
+            setReserveErrors([error.response.data.message])
         }
     }
 
+    useEffect(() => {
+        if (reserveErrors.length > 0) setReserveErrors([])
+        if (reloadedReserves) setReloadedReserves(false)
+
+    }, [reloadedReserves,reserveErrors])
+
     return (
-        <ReserveContext.Provider value={{ reserves, crearReserva, readUserReserves, eliminarReserva, readOneReserve, readReserves, actualizarReserva,  }}>
+        <ReserveContext.Provider value={{ reserves, crearReserva, readUserReserves, eliminarReserva, readOneReserve, readReserves, 
+        actualizarReserva,reloadedReserves,setReloadedReserves,reserveErrors  }}>
             {children}
         </ReserveContext.Provider>
 

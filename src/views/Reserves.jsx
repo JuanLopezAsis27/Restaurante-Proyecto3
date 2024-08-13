@@ -4,10 +4,13 @@ import ReserveCard from "../components/ReserveCard";
 
 
 const Reserves = () => {
-  const { readUserReserves, reserves } = useReserves()
+  const { readUserReserves, reserves, reloadedReserves, setReloadedReserves } = useReserves()
   useEffect(() => {
     readUserReserves()
-  }, [reserves])
+
+    return () => setReloadedReserves(false)
+
+  }, [reloadedReserves])
 
   if (reserves.length == 0) return(
     <div className='flex justify-center'>

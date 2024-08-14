@@ -25,6 +25,11 @@ body{
   font-style: normal;
 }
 
+.h1-card{
+  font-family: "Great Vibes", cursive;
+  font-style: normal;
+}
+
 .p-slider{
   font-family: "Dancing Script", cursive;
   font-weight: 400;
@@ -135,6 +140,12 @@ nav.abajo .dropdown a{
   display: flex;
 }
 
+select:invalid {
+  color: gray;
+}
+option[value=""] {
+  display: none;
+}
 
 @media (max-width: 825px){
   

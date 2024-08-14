@@ -44,7 +44,7 @@ export function ReserveProvider({ children }) {
 
     const crearReserva = async (data) => {
        try {
-        console.log(data.dia);
+        
         const telefono = parseInt(data.telefono);
         const cantidadPersonas = parseInt(data.cantidadPersonas);
         const reserve = { ...data, telefono, cantidadPersonas };
@@ -81,8 +81,12 @@ export function ReserveProvider({ children }) {
     }
 
 
-    const actualizarReserva = async (id, reserve) => {
+    const actualizarReserva = async (id, data) => {
         try {
+
+            const telefono = parseInt(data.telefono);
+            const cantidadPersonas = parseInt(data.cantidadPersonas);
+            const reserve = { ...data, telefono, cantidadPersonas };
             const res = await updateReserve(id, reserve)
             setReloadedReserves(true)
         } catch (error) {

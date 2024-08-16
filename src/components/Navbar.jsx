@@ -13,10 +13,11 @@ const Navbar = () => {
 
 
     useEffect(() => {
-        const path = window.location.hash;
+        const hash = window.location.hash;
         const nav = document.querySelector('nav')
         
-        if (path == '#/') {
+        if (hash == '#/' || hash=='') {
+
             nav.classList.add('fixed');
             nav.classList.remove('noHome-nav')
             window.addEventListener("scroll", function () {

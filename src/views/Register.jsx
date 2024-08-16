@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate, Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom"
 import Swal from 'sweetalert2'
 
 const Register = () => {

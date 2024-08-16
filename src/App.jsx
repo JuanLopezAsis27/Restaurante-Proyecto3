@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Register from "./views/Register";
 import Login from "./views/Login";
 import Reserves from "./views/Reserves";
@@ -27,7 +27,7 @@ function App() {
     <>
       <AuthProvider>
         <ReserveProvider>
-          <BrowserRouter>
+          <HashRouter>
             <Navbar />
             <Wrapper className="container min-w-full">
               <Routes>
@@ -53,7 +53,7 @@ function App() {
               </Routes>
             </Wrapper>
             <Footer />
-          </BrowserRouter>
+          </HashRouter>
         </ReserveProvider>
       </AuthProvider>
 

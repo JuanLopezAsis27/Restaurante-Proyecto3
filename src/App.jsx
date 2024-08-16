@@ -18,15 +18,18 @@ import Footer from "./components/Footer";
 import Images from "./views/Images";
 import Contact from "./views/Contact";
 import ErrorScreen from "./views/ErrorScreen";
+import React from "react";
+import Wrapper from "./components/Wrapper";
 
 function App() {
+
   return (
     <>
       <AuthProvider>
         <ReserveProvider>
           <BrowserRouter>
             <Navbar />
-            <main className="container min-w-full">
+            <Wrapper className="container min-w-full">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
@@ -48,7 +51,7 @@ function App() {
                 </Route>
                 <Route path="*" element={<ErrorScreen />} />
               </Routes>
-            </main>
+            </Wrapper>
             <Footer />
           </BrowserRouter>
         </ReserveProvider>

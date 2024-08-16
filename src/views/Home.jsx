@@ -12,20 +12,20 @@ const Home = () => {
         <SliderImages />
 
       </section>
-      <section className='flex justify-around my-14'>
-        <article className='bg-zinc-800 max-w-md w-full p-14 rounded-md min-w-md'>
+      <section className='mx-auto md:mx-0 w-9/12 sm:w-7/12 md:w-full md:flex justify-around my-14 '>
+        <article className='bg-zinc-800 max-w-md p-14 xl:rounded-md min-w-md'>
           <img src="https://www.elrinconibiza.es/wp-content/uploads/go-x/u/7664a27e-a7f7-4891-b9eb-232ba34a82a4/l2,t0,w1611,h1079/image.jpg" alt="" />
           <h1 className='text-3xl h1-card text-center my-6'>Ambiente</h1>
           <p className='text-center'>Descubre un ambiente único y encantador en nuestro restaurante.
             Cada rincón te espera con una experiencia gastronómica inolvidable. ¡Ven y déjate sorprender!</p>
         </article>
-        <article className='bg-zinc-800 max-w-md w-full p-14 rounded-md min-w-md'>
+        <article className='bg-zinc-800 max-w-md  p-14 xl:rounded-md min-w-md'>
           <img src="https://www.elrinconibiza.es/wp-content/uploads/go-x/u/f9d6f4ab-7f31-42ed-95dd-395acda6c8e9/l0,t2,w1616,h1077/image.jpg" alt="" />
           <h1 className='text-3xl h1-card text-center my-6'>Gastronomia</h1>
           <p className='text-center'>Nuestro menú está cuidadosamente elaborado con ingredientes frescos
             y de alta calidad para ofrecerte una experiencia culinaria única en Ibiza.</p>
         </article>
-        <article className='bg-zinc-800 max-w-md w-full p-14 rounded-md min-w-md'>
+        <article className='bg-zinc-800 max-w-md p-14 xl:rounded-md min-w-md'>
           <img src="https://www.elrinconibiza.es/wp-content/uploads/go-x/u/89c1d7fc-6d44-4d10-8a5f-3ebc98030de2/l30,t0,w1324,h882/image.jpg" alt="" />
           <h1 className='text-3xl h1-card text-center my-6'>Cocteles</h1>
           <p className='text-center'>Hemos diseñado cócteles únicos que complementan a la perfección la experiencia gastronómica que ofrecemos.

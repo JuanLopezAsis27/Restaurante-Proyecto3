@@ -133,7 +133,7 @@ const ReserveForm = () => {
           <p className='text-red-500'>{errors.dia?.message}</p>
          
           <select name='hora' {...register('hora', { required: 'La hora es requerido' })} className='w-full bg-zinc-700 px-4 py-2 rounded-md my-2'>
-            <option value="" selected>Hora</option>
+            <option value="">Hora</option>
             {horas.map((hora) => {
               return <option key={hora} value={hora}>{hora}</option>
             })}

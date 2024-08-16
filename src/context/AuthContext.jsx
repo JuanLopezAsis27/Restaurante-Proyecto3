@@ -1,8 +1,9 @@
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useContext, useEffect, useLayoutEffect } from "react";
 import { ingresar, registrarse, verifyToken, leerUsuarios, suspenderUsuario, eliminarUsuario, activarUsuario, actualizarUsuario } from "../utils/auth";
 import Cookies from "js-cookie";
 import DefaultImage from "../assets/avatarDefault.png";
 import Swal from 'sweetalert2'
+import { useLocation } from "react-router-dom";
 
 export const AuthContext = createContext()
 
@@ -15,6 +16,7 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
+
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [errors, setErrors] = useState([]);

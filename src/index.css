@@ -7,6 +7,10 @@ body{
   color: white;
 }
 
+textarea {
+  resize: none;
+}
+
 .default-nav{
   margin: 0.7rem;
 }

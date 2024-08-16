@@ -2,7 +2,7 @@ import React from 'react'
 import { useAuth } from '../context/AuthContext'
 import Swal from 'sweetalert2'
 
-const UserListCard = ({ user }) => {
+const UserListCard = ({ userList }) => {
 
   const { suspendUser, deleteUser, enableUser } = useAuth()
   
@@ -30,7 +30,7 @@ const UserListCard = ({ user }) => {
       color: '#fafafa'
     }).then((result) => {
       if (result.isConfirmed) {
-        suspendUser(user.uid);
+        suspendUser(userList.uid);
         
         Swal.fire({
           title: "Suspendido",
@@ -69,7 +69,7 @@ const UserListCard = ({ user }) => {
       color: '#fafafa'
     }).then((result) => {
       if (result.isConfirmed) {
-        enableUser(user.uid);
+        enableUser(userList.uid);
         Swal.fire({
           title: "Activo",
           text: "El usuario esta nuevamente activo",
@@ -77,7 +77,6 @@ const UserListCard = ({ user }) => {
           background: '#393939',
           color: '#fafafa'
         });
-        navigate('/')
 
 
       }
@@ -126,13 +125,13 @@ const UserListCard = ({ user }) => {
   return (
     <div className=' w-full p-10'>
       <div className='flex flex-col sm:flex-row items-start sm:items-center justify-around md:gap-5 lg:gap-2 xl:gap-20'>
-        <h1 className='text-2xl font-bold'> Usuario: {user.username}</h1>
-        <p className='text-slate-300 hidden lg:block'>Id: {user.uid}</p>
-        <p className='text-slate-300 hidden md:block '>Email: {user.email}</p>
-        <p className='text-slate-300'>Admin: {user.admin ? 'Si' : 'No'} </p>
-        <p className='text-slate-300'>Suspendido: {user.state ? 'No' : 'Si'} </p>
+        <h1 className='text-2xl font-bold'> Usuario: {userList.username}</h1>
+        <p className='text-slate-300 hidden lg:block'>Id: {userList.uid}</p>
+        <p className='text-slate-300 hidden md:block '>Email: {userList.email}</p>
+        <p className='text-slate-300'>Admin: {userList.admin ? 'Si' : 'No'} </p>
+        <p className='text-slate-300'>Suspendido: {userList.state ? 'No' : 'Si'} </p>
         <div className='flex sm:flex-col flex-row'>
-          {user.state ? (<button className='bg-yellow-600 rounded-md p-1 sm:p-2  text-center mb-1 mt-4 sm:m-0' onClick={suspenderUsuario}>Suspender</button>) :
+          {userList.state ? (<button className='bg-yellow-600 rounded-md p-1 sm:p-2  text-center mb-1 mt-4 sm:m-0' onClick={suspenderUsuario}>Suspender</button>) :
             (<button className='bg-green-500 rounded-md text-center p-1 sm:p-2 px-3 mb-1' onClick={activarUsuario}>Reactivar</button>)}
           <button className='bg-orange-700 text-center rounded-md p-1 sm:p-2 mt-4 mb-1 ' onClick={eliminarUsuario}>Eliminar</button>
         </div>

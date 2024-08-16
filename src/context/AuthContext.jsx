@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await suspenderUsuario(id)
             setReloadedUsers(true)
-            console.log(res);
+            
             
         } catch (error) {
             console.log(error);
@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await activarUsuario(id)
             setReloadedUsers(true)
-            console.log(res);
+            
 
         } catch (error) {
             console.log(error);
@@ -94,6 +94,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await actualizarUsuario(id,data)
             if (res.status == 203) setUser(res.data)
+            setReloadedUsers(true)
             
         } catch (error) {
             console.log(error);
@@ -183,9 +184,10 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (errors.length > 0) setErrors([])
+        if (reloadedUsers) setReloadedUsers(false)
 
 
-    }, [errors])
+    }, [errors,reloadedUsers])
 
 
     return (

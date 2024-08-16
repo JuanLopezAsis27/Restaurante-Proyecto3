@@ -14,7 +14,6 @@ const ReserveForm = () => {
   const navigate = useNavigate()
   const location = useLocation();
   const params = useParams()
-  let data;
 
   useEffect(() => {
     const path = window.location.pathname;
@@ -22,8 +21,6 @@ const ReserveForm = () => {
       reset()
     }
   }, [location])
-
-
 
   useEffect(() => {
     async function loadReserve() {
@@ -55,7 +52,6 @@ const ReserveForm = () => {
         if (result.isConfirmed) {
 
           if (reserveErrors.length != 0) {
-            console.log(reserveErrors);
 
             if (params.id) {
               if (reserveErrors[0] == 'No se han notado cambios en tu reserva') {

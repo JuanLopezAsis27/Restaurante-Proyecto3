@@ -1,63 +1,62 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 
 const Profile = () => {
-  const { user, updateUser, errors: registerErrors } = useAuth()
+  const { user, updateUser, errors: registerErrors, reloadedUsers } = useAuth()
   const { handleSubmit, register, reset } = useForm()
   const navigate = useNavigate()
 
   const params = useParams()
 
   useEffect(() => {
-    if (registerErrors.length != 0) {
-
+    if (reloadedUsers || registerErrors.length != 0) {
       Swal.fire({
-        icon: "error",
-        title: `${registerErrors.map((error, i) => error)}`,
-        text: "Intente con otro",
+        title: "¿Seguro modificar tus datos?",
+        showDenyButton: true,
+        confirmButtonColor: "#197600",
+        denyButtonColor: "#a40000",
+        confirmButtonText: "Modificar",
+        denyButtonText: `Cancelar`,
         background: '#393939',
         color: '#fafafa'
-      });
-      reset()
+      }).then(async (result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+
+          if (registerErrors.length != 0) {
+            Swal.fire({
+              icon: "error",
+              title: `${registerErrors.map((error, i) => error)}`,
+              text: "Intente con otro",
+              background: '#393939',
+              color: '#fafafa'
+            });
+            reset();
+          } else {
+            Swal.fire({
+              title: "Excelente",
+              text: "Tus datos han sido modificados",
+              icon: "success",
+              background: '#393939',
+              color: '#fafafa'
+            })
+
+            navigate('/profile')
+          }
+        }
+      })
+
+
 
     }
-  }, [registerErrors])
+  }, [registerErrors, reloadedUsers])
 
   const onSubmit = handleSubmit(async (data) => {
 
-    Swal.fire({
-      title: "¿Seguro modificar tus datos?",
-      showDenyButton: true,
-      confirmButtonColor: "#197600",
-      denyButtonColor: "#a40000",
-      confirmButtonText: "Modificar",
-      denyButtonText: `Cancelar`,
-      background: '#393939',
-      color: '#fafafa'
-    }).then(async (result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        updateUser(params.id, data)
-
-        if (registerErrors.length == 0) {
-          Swal.fire({
-            title: "Excelente",
-            text: "Tus datos han sido modificados",
-            icon: "success",
-            background: '#393939',
-            color: '#fafafa'
-          })
-
-          navigate('/profile')
-        }
-      }
-    })
-
-    console.log(data);
-
+    updateUser(params.id, data)
 
   })
 

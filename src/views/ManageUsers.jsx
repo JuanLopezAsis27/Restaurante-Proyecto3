@@ -4,7 +4,7 @@ import UserListCard from '../components/UserListCard'
 
 
 const ManageUsers = () => {
-  const { readUsers, users ,reloadedUsers, setReloadedUsers  } = useAuth()
+  const { readUsers, users ,reloadedUsers, setReloadedUsers,user  } = useAuth()
 
   useEffect(() => {
     readUsers()
@@ -17,8 +17,9 @@ const ManageUsers = () => {
   return (
     <div className='my-32 px-16'>
       <div className='bg-zinc-800 rounded-lg min-w-full'>
-        {users.map((user) => (
-          <UserListCard user={user} key={user.uid} />
+        {users.map((userList) => (
+          user.id!=userList.uid &&
+          <UserListCard userList={userList} key={userList.uid} />
         ))
         }
       </div>

@@ -76,7 +76,7 @@ const Profile = () => {
               )
             }
             <label className='ps-1'>Email</label>
-            {params.id ? (<><input type="text" className='min-w-72 mb-5 bg-zinc-700 text-white px-4 py-2 rounded-md my-2' autoComplete='true'
+            {params.id ? (<><input type="email" className='min-w-72 mb-5 bg-zinc-700 text-white px-4 py-2 rounded-md my-2' autoComplete='true'
               {...register('email', { required: 'El email es requerido' })} />
               <button className='bg-orange-400 rounded-md text-center p-2 text-black' to={`/profile/${user.id}`}><b>Modificar perfil</b></button>
             </>) :

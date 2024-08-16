@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
+    
     return (
         <>
-
             <footer className="bg-zinc-700 dark:bg-gray-900 min-w-full" >
                 <div>
                     <div className="mx-auto w-full max-w-screen-xl">
@@ -62,10 +62,7 @@ const Footer = () => {
                                     </li>
                                     <li className="mb-4">
                                         <a href="#" className="hover:underline">Windows</a>
-                                    </li>
-                                    <li className="mb-4">
-                                        <a href="#" className="hover:underline">MacOS</a>
-                                    </li>
+                                    </li>                                    
                                 </ul>
                             </div>
                         </div>

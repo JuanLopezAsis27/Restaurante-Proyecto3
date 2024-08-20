@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL:'http://localhost:8080/api',
-    // baseURL:'https://restaurante-backend.onrender.com/api',
+    // baseURL:'http://localhost:8080/api',
+    baseURL:'https://restaurante-backend.onrender.com/api',
     withCredentials:true
 })
 

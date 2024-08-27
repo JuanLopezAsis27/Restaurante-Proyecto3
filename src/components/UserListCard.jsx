@@ -107,7 +107,7 @@ const UserListCard = ({ userList }) => {
       color: '#fafafa',
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteUser(user.uid);
+        deleteUser(userList.uid);
         Swal.fire({
           title: "Eliminado!",
           text: "El usuario ha sido eliminado",

@@ -125,7 +125,7 @@ const ReserveForm = () => {
     <div className='flex items-center my-36 justify-center'>
       <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md'>
         <form onSubmit={onSubmit}>
-          <input type="date" placeholder='Dia' min={`${new Date().toISOString().slice(0, 10)}`} max="2024-09-01" {...register('dia', { required: 'La fecha es requerida' })} className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
+          <input type="date" placeholder='Dia' min={`${new Date().toISOString().slice(0, 10)}`} max="2024-10-10" {...register('dia', { required: 'La fecha es requerida' })} className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
           <p className='text-red-500'>{errors.dia?.message}</p>
          
           <select name='hora' {...register('hora', { required: 'La hora es requerido' })} className='w-full bg-zinc-700 px-4 py-2 rounded-md my-2'>

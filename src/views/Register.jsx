@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
-import { useForm } from "react-hook-form";
+import { useForm  } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import {useNavigate} from "react-router-dom"
+import {useNavigate , Link} from "react-router-dom"
 import Swal from 'sweetalert2'
 
 const Register = () => {
@@ -59,7 +59,7 @@ const Register = () => {
 
                     <input placeholder='Email' type="email" name='email' {...register('email', {
                         required: 'El email es requerido',
-                        maxLength: { value: 60, message: 'No debe tener mas de 80 caracteres' }
+                        maxLength: { value: 100, message: 'No debe tener mas de 80 caracteres' }
                     })}
                         className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2' />
                     <p className='text-red-500'>{errors.email?.message}</p>
